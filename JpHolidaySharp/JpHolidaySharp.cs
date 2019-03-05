@@ -16,25 +16,19 @@ namespace JpHolidaySharp
             private readonly int _start;
             private readonly int _end;
 
-            private YearRule(int year)
-            {
-                _start = year;
-                _end = year;
-            }
-
             private YearRule(int start, int end)
             {
                 _start = start;
                 _end = end;
             }
 
-            public bool Eval(DateTime date) => date.Year >= _start && date.Year <= _end;
+            public bool Eval(DateTime date) => (_start < 0 || date.Year >= _start) && (_end < 0 || date.Year <= _end);
 
-            public static YearRule Just(int year) => new YearRule(year);
-            public static YearRule Before(int year) => new YearRule(int.MinValue, year);
-            public static YearRule After(int year) => new YearRule(year, int.MaxValue);
+            public static YearRule Just(int year) => new YearRule(year, year);
+            public static YearRule Before(int year) => new YearRule(-1, year);
+            public static YearRule After(int year) => new YearRule(year, -1);
             public static YearRule Range(int start, int end) => new YearRule(start, end);
-            public static YearRule Any() => new YearRule(int.MinValue, int.MaxValue);
+            public static YearRule Any() => new YearRule(-1, -1);
         }
 
         private sealed class MonthRule : Rule
@@ -42,25 +36,19 @@ namespace JpHolidaySharp
             private readonly int _start;
             private readonly int _end;
 
-            private MonthRule(int month)
-            {
-                _start = month;
-                _end = month;
-            }
-
             private MonthRule(int start, int end)
             {
                 _start = start;
                 _end = end;
             }
 
-            public bool Eval(DateTime date) => date.Month >= _start && date.Month <= _end;
+            public bool Eval(DateTime date) => (_start < 0 || date.Month >= _start) && (_end < 0 || date.Month <= _end);
 
-            public static MonthRule Just(int month) => new MonthRule(month);
-            public static MonthRule Before(int month) => new MonthRule(int.MinValue, month);
-            public static MonthRule After(int month) => new MonthRule(month, int.MaxValue);
+            public static MonthRule Just(int month) => new MonthRule(month, month);
+            public static MonthRule Before(int month) => new MonthRule(-1, month);
+            public static MonthRule After(int month) => new MonthRule(month, -1);
             public static MonthRule Range(int start, int end) => new MonthRule(start, end);
-            public static MonthRule Any() => new MonthRule(int.MinValue, int.MaxValue);
+            public static MonthRule Any() => new MonthRule(-1, -1);
         }
 
         private sealed class DayRule : Rule
