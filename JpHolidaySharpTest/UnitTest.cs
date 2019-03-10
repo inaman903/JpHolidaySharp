@@ -35,7 +35,9 @@ namespace JpHolidaySharpTest
         public void TestExistsHoliday()
         {
             var holidayTable = GetHolidayTable();
-            for (var date = StatDate; date <= EndDate; date = date.AddMonths(1))
+            var startDate = new DateTime(StatDate.Year, StatDate.Month, 1);
+            var endDate = new DateTime(EndDate.Year, EndDate.Month, 1);
+            for (var date = startDate; date <= endDate; date = date.AddMonths(1))
             {
                 var start = new DateTime(date.Year, date.Month, 1);
                 var end = new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
