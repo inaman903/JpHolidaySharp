@@ -200,28 +200,28 @@ namespace JpHolidaySharp
 
             DateRule.Holiday(@"春分の日", YearRule.Range(1949, 1979), MonthRule.Just(3), DayRule.Func((date) =>
             {
-                return date.Day == (int) (20.8357 + 0.242194 * (date.Year - 1980)) - (int) ((date.Year - 1983) / 4.0);
+                return date.Day == (int)(20.8357 + 0.242194 * (date.Year - 1980) - (int)((date.Year - 1983) / 4.0));
             })),
             DateRule.Holiday(@"春分の日", YearRule.Range(1980, 2099), MonthRule.Just(3), DayRule.Func((date) =>
             {
-                return date.Day == (int) (20.8431 + 0.242194 * (date.Year - 1980)) - (int) ((date.Year - 1980) / 4.0);
+                return date.Day == (int)(20.8431 + 0.242194 * (date.Year - 1980) - (int)((date.Year - 1980) / 4.0));
             })),
             DateRule.Holiday(@"春分の日", YearRule.Range(2100, 2150), MonthRule.Just(3), DayRule.Func((date) =>
             {
-                return date.Day == (int) (21.8510 + 0.242194 * (date.Year - 1980)) - (int) ((date.Year - 1980) / 4.0);
+                return date.Day == (int)(21.8510 + 0.242194 * (date.Year - 1980) - (int)((date.Year - 1980) / 4.0));
             })),
 
             DateRule.Holiday(@"秋分の日", YearRule.Range(1948, 1979), MonthRule.Just(9), DayRule.Func((date) =>
             {
-                return date.Day == (int) (23.2588 + 0.242194 * (date.Year - 1980)) - (int) ((date.Year - 1983) / 4.0);
+                return date.Day == (int)(23.2588 + 0.242194 * (date.Year - 1980) - (int)((date.Year - 1983) / 4.0));
             })),
             DateRule.Holiday(@"秋分の日", YearRule.Range(1980, 2099), MonthRule.Just(9), DayRule.Func((date) =>
             {
-                return date.Day == (int) (23.2488 + 0.242194 * (date.Year - 1980)) - (int) ((date.Year - 1980) / 4.0);
+                return date.Day == (int)(23.2488 + 0.242194 * (date.Year - 1980) - (int)((date.Year - 1980) / 4.0));
             })),
             DateRule.Holiday(@"秋分の日", YearRule.Range(2100, 2150), MonthRule.Just(9), DayRule.Func((date) =>
             {
-                return date.Day == (int) (24.2488 + 0.242194 * (date.Year - 1980)) - (int) ((date.Year - 1980) / 4.0);
+                return date.Day == (int)(24.2488 + 0.242194 * (date.Year - 1980) - (int)((date.Year - 1980) / 4.0));
             })),
 
             DateRule.Holiday(@"即位礼正殿の儀", YearRule.Just(2019), MonthRule.Just(10), DayRule.Just(22)),
@@ -257,7 +257,7 @@ namespace JpHolidaySharp
                 if (date.DayOfWeek == DayOfWeek.Sunday)return false;
 
                 var tmp1 = date.AddDays(-1);
-var tmp2 = date.AddDays(1);
+                var tmp2 = date.AddDays(1);
                 return FindHoliday(tmp1, false, false) != null && FindHoliday(tmp2, false, false) != null;
             })),
         };
