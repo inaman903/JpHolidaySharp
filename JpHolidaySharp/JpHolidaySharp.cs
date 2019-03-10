@@ -65,12 +65,12 @@ namespace JpHolidaySharp
                 public bool Eval(DateTime date) => date.Day == _day;
             }
 
-            private sealed class WeekDayRule : Rule
+            private sealed class WeekdayRule : Rule
             {
                 private int _week;
                 private DayOfWeek _dayOfWeek;
 
-                public WeekDayRule(int week, DayOfWeek dayOfWeek)
+                public WeekdayRule(int week, DayOfWeek dayOfWeek)
                 {
                     _week = week;
                     _dayOfWeek = dayOfWeek;
@@ -109,7 +109,7 @@ namespace JpHolidaySharp
             public bool Eval(DateTime date) => _rule?.Eval(date) ?? false;
 
             public static DayRule Just(int day) => new DayRule(new JustRule(day));
-            public static DayRule WeekDay(int week, DayOfWeek dayOfWeek) => new DayRule(new WeekDayRule(week, dayOfWeek));
+            public static DayRule Weekday(int week, DayOfWeek dayOfWeek) => new DayRule(new WeekdayRule(week, dayOfWeek));
             public static DayRule Func(Func<DateTime, bool> func) => new DayRule(new FuncRule(func));
         }
 
@@ -171,7 +171,7 @@ namespace JpHolidaySharp
         private static readonly List<DateRule> _holidayRules = new List<DateRule>()
         {
             DateRule.Holiday(@"元日", YearRule.After(1949), MonthRule.Just(1), DayRule.Just(1)),
-            DateRule.Holiday(@"成人の日", YearRule.After(2000), MonthRule.Just(1), DayRule.WeekDay(2, DayOfWeek.Monday)),
+            DateRule.Holiday(@"成人の日", YearRule.After(2000), MonthRule.Just(1), DayRule.Weekday(2, DayOfWeek.Monday)),
             DateRule.Holiday(@"成人の日", YearRule.Range(1949, 1999), MonthRule.Just(1), DayRule.Just(15)),
             DateRule.Holiday(@"建国記念の日", YearRule.After(1967), MonthRule.Just(2), DayRule.Just(11)),
             DateRule.Holiday(@"昭和の日", YearRule.After(2007), MonthRule.Just(4), DayRule.Just(29)),
@@ -179,18 +179,18 @@ namespace JpHolidaySharp
             DateRule.Holiday(@"みどりの日", YearRule.After(2007), MonthRule.Just(5), DayRule.Just(4)),
             DateRule.Holiday(@"みどりの日", YearRule.Range(1989, 2006), MonthRule.Just(4), DayRule.Just(29)),
             DateRule.Holiday(@"こどもの日", YearRule.After(1949), MonthRule.Just(5), DayRule.Just(5)),
-            DateRule.Holiday(@"海の日", YearRule.After(2021), MonthRule.Just(7), DayRule.WeekDay(3, DayOfWeek.Monday)),
+            DateRule.Holiday(@"海の日", YearRule.After(2021), MonthRule.Just(7), DayRule.Weekday(3, DayOfWeek.Monday)),
             DateRule.Holiday(@"海の日", YearRule.Just(2020), MonthRule.Just(7), DayRule.Just(23)),
-            DateRule.Holiday(@"海の日", YearRule.Range(2003, 2019), MonthRule.Just(7), DayRule.WeekDay(3, DayOfWeek.Monday)),
+            DateRule.Holiday(@"海の日", YearRule.Range(2003, 2019), MonthRule.Just(7), DayRule.Weekday(3, DayOfWeek.Monday)),
             DateRule.Holiday(@"海の日", YearRule.Range(1996, 2002), MonthRule.Just(7), DayRule.Just(20)),
             DateRule.Holiday(@"山の日", YearRule.After(2021), MonthRule.Just(8), DayRule.Just(11)),
             DateRule.Holiday(@"山の日", YearRule.Just(2020), MonthRule.Just(8), DayRule.Just(10)),
             DateRule.Holiday(@"山の日", YearRule.Range(2016, 2019), MonthRule.Just(8), DayRule.Just(11)),
-            DateRule.Holiday(@"敬老の日", YearRule.After(2003), MonthRule.Just(9), DayRule.WeekDay(3, DayOfWeek.Monday)),
+            DateRule.Holiday(@"敬老の日", YearRule.After(2003), MonthRule.Just(9), DayRule.Weekday(3, DayOfWeek.Monday)),
             DateRule.Holiday(@"敬老の日", YearRule.Range(1966, 2002), MonthRule.Just(9), DayRule.Just(15)),
-            DateRule.Holiday(@"体育の日", YearRule.Range(2000, 2019), MonthRule.Just(10), DayRule.WeekDay(2, DayOfWeek.Monday)),
+            DateRule.Holiday(@"体育の日", YearRule.Range(2000, 2019), MonthRule.Just(10), DayRule.Weekday(2, DayOfWeek.Monday)),
             DateRule.Holiday(@"体育の日", YearRule.Range(1966, 1999), MonthRule.Just(10), DayRule.Just(10)),
-            DateRule.Holiday(@"スポーツの日", YearRule.After(2021), MonthRule.Just(10), DayRule.WeekDay(2, DayOfWeek.Monday)),
+            DateRule.Holiday(@"スポーツの日", YearRule.After(2021), MonthRule.Just(10), DayRule.Weekday(2, DayOfWeek.Monday)),
             DateRule.Holiday(@"スポーツの日", YearRule.Just(2020), MonthRule.Just(7), DayRule.Just(24)),
             DateRule.Holiday(@"文化の日", YearRule.After(1948), MonthRule.Just(11), DayRule.Just(3)),
             DateRule.Holiday(@"勤労感謝の日", YearRule.After(1948), MonthRule.Just(11), DayRule.Just(23)),
