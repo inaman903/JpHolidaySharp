@@ -42,7 +42,7 @@ namespace JpHolidaySharpTest
                 var start = new DateTime(date.Year, date.Month, 1);
                 var end = new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
 
-                var expected = holidayTable.Keys.Where((d) => d.Year == date.Year && d.Month == date.Month).Any();
+                var expected = holidayTable.Keys.Any((d) => d.Year == date.Year && d.Month == date.Month);
                 var actual = JpHoliday.ExistsHoliday(start, end);
                 Assert.AreEqual(
                     expected,
